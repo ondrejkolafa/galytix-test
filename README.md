@@ -19,10 +19,10 @@ python -m build
 ```
 
 ## Usage
-To start the project, use the following command:
+To start the application, use the following commands:
 
 ### Input files
-Application expects the files to be located in the resource folder as:
+Application expects the files to be located in the `resource` folder as:
  - *word2vec.csv*
  - *phrases.csv*
 
