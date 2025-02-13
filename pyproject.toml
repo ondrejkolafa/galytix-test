@@ -1,0 +1,33 @@
+[project]
+name = "phrase-similarity"
+version = "0.1.0"
+description = "A tool for computing phrase similarities using word embeddings"
+authors = [
+    {name = "Ondřej Kolafa", email = "kolafa@gmail.com"}
+]
+dependencies = [
+    "numpy>=1.26.4",
+    "scipy==1.13.1"
+    "scikit-learn==1.6.1",
+    "gensim>=4.3.3",
+    "click==8.1.8"
+]
+requires-python = "==3.10"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+exclude = [
+  "/.*",
+  "/resources",
+  "/output",
+  "/__pycache__",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src", "main.py", "config.yaml"]
+
+[project.scripts]
+phrase-similarity = "main:main"
