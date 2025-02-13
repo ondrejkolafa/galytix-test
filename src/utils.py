@@ -4,7 +4,8 @@ import logging
 import os
 import yaml
 
-def get_logger():
+
+def get_logger() -> logging.Logger:
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
     
@@ -20,8 +21,10 @@ def get_logger():
 
 logger = get_logger()
 
+
 def check_path_exists(path: str) -> bool:
     return os.path.exists(path)
+
 
 def read_yaml_file(yaml_location: str) -> dict:
     with open(yaml_location, 'r') as stream:
@@ -29,6 +32,7 @@ def read_yaml_file(yaml_location: str) -> dict:
             return yaml.safe_load(stream)
         except yaml.YAMLError as exc:
             logger.info(exc)
+
 
 def read_csv_file(csv_location:str, skip_header:bool=True) -> list[str]:
     with open(csv_location, newline='', encoding='unicode_escape') as csvfile:
@@ -39,7 +43,7 @@ def read_csv_file(csv_location:str, skip_header:bool=True) -> list[str]:
     return data
 
 
-def write_json_file(data: dict, output_path: str):
+def write_json_file(data: dict, output_path: str) -> None:
     output_folder = os.path.dirname(output_path)
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)

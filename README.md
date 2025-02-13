@@ -41,3 +41,6 @@ Run the app with this command, you'll be able to enter your queries later.
 ```bash
 phrase-similarity
 ```
+
+### Help
+Run it with `--help` argument

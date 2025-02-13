@@ -27,7 +27,7 @@ class PhraseSimilarityCalculator:
         self.phrase_embeddings = None
         self.phrases = read_csv_file(phrases_path)
 
-    def validate_input_files(self, word2vec_path, phrases_path):
+    def validate_input_files(self, word2vec_path, phrases_path) -> bool:
         error_detected = False
         if not check_path_exists(word2vec_path):
             logger.error(f"Word2Vec model file not found at {word2vec_path}")
@@ -77,13 +77,12 @@ class PhraseSimilarityCalculator:
         return phrase_embedding
 
 
-    def batch_compute_embeddings(self):
+    def batch_compute_embeddings(self) -> None:
         """
-        Compute embeddings for all phrases in the CSV and optionally cache them.
+        Compute embeddings for all phrases in the CSV
         
         Args:
             phrases_path: Path to phrases.csv
-            cache_path: Optional path to cache the computed embeddings
         """        
             
         # Compute embeddings
