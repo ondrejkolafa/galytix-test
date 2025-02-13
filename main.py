@@ -10,7 +10,8 @@ logger = get_logger()
 @click.option("--batch", "-b", is_flag=True, default=False, help='Use this to run the batch processing.')
 @click.option("--model_path", "-m", default="", help='Use this to change the default Word2Vec model path.')
 @click.option("--phrases_path", "-p", default="", help='Use this to choose different phrases file.')
-def main(batch, model_path, phrases_path):
+@click.option("--distance", "-d", default="cosine", help='Use this to choose different distance_metric (cosine/euclidean).')
+def main(batch, model_path, phrases_path, distance):
     config = read_yaml_file("config.yaml")
     if model_path:
         WORD2VEC_PATH = model_path
@@ -22,7 +23,7 @@ def main(batch, model_path, phrases_path):
         PHRASES_PATH = config['phrases_path']
     OUTPUT_PATH = config['output_path']
 
-    calculator = PhraseSimilarityCalculator(word2vec_path=WORD2VEC_PATH, phrases_path=PHRASES_PATH, distance_metric='cosine')
+    calculator = PhraseSimilarityCalculator(word2vec_path=WORD2VEC_PATH, phrases_path=PHRASES_PATH, distance_metric=distance)
 
     calculator.batch_compute_embeddings()
 
